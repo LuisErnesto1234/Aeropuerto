@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Usuarios</title>
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div th:include="aside :: aside"></div>
+
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+
+        <h1 class="text-center text-5xl">Formulario de Usuarios</h1>
+
+        <div class="flex justify-center items-center">
+            <form th:action="@{/usuarios}" th:object="${usuario}" method="post" enctype="multipart/form-data"
+                  class="flex flex-col gap-4">
+                <input type="hidden" th:field="*{idUsuario}"/>
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" th:field="*{nombre}"/>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" th:field="*{apellido}"/>
+
+                <label for="nacionalidad">Nacionalidad:</label>
+                <select id="nacionalidad" th:field="*{nacionalidad}">
+                    <option value="">--Eliga una opción--</option>
+                    <option value="Argentina" th:selected="${usuario.nacionalidad eq 'Argentina'}">Argentina</option>
+                    <option value="Brasil" th:selected="${usuario.nacionalidad eq 'Brasil'}">Brasil</option>
+                    <option value="Chile" th:selected="${usuario.nacionalidad eq 'Chile'}">Chile</option>
+                    <option value="Colombia" th:selected="${usuario.nacionalidad eq 'Colombia'}">Colombia</option>
+                    <option value="Ecuador" th:selected="${usuario.nacionalidad eq 'Ecuador'}">Ecuador</option>
+                    <option value="Peru" th:selected="${usuario.nacionalidad eq 'Peru'}">Peru</option>
+                    <option value="Uruguay" th:selected="${usuario.nacionalidad eq 'Uruguay'}">Uruguay</option>
+                </select>
+
+                <label for="file">Imagen:</label>
+                <input type="file" id="file" name="file"/>
+
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+</body>
+</html>

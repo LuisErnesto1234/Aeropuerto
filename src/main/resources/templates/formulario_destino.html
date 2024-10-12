@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Destinos</title>
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<div th:include="aside :: aside"></div>
+
+<div class="p-4 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+
+        <h1 class="text-center text-5xl">Formulario de Destinos</h1>
+
+        <div class="flex justify-center items-center">
+            <form th:action="@{/destinos}" th:object="${destino}" method="post" enctype="multipart/form-data" class="flex flex-col gap-4">
+                <input type="hidden" th:field="*{idDestino}" />
+
+                <label for="nacionalidad">Pais:</label>
+                <select id="nacionalidad" th:field="*{pais}">
+                    <option value="">--Eliga una opción--</option>
+                    <option value="Argentina" th:selected="${destino.pais eq 'Argentina'}">Argentina</option>
+                    <option value="Brasil" th:selected="${destino.pais eq 'Brasil'}">Brasil</option>
+                    <option value="Chile" th:selected="${destino.pais eq 'Chile'}">Chile</option>
+                    <option value="Colombia" th:selected="${destino.pais eq 'Colombia'}">Colombia</option>
+                    <option value="Ecuador" th:selected="${destino.pais eq 'Ecuador'}">Ecuador</option>
+                    <option value="Peru" th:selected="${destino.pais eq 'Peru'}">Peru</option>
+                    <option value="Uruguay" th:selected="${destino.pais eq 'Uruguay'}">Uruguay</option>
+                </select>
+
+                <label for="fecha-salida">Fecha Salida:</label>
+                <input type="date" id="fecha-salida" th:field="*{fechaSalida}" />
+
+                <label for="hora-salida">Hora Salida:</label>
+                <input type="time" id="hora-salida" th:field="*{horaSalida}" />
+
+                <label for="fecha-llegada">Fecha Llegada:</label>
+                <input type="date" id="fecha-llegada" th:field="*{fechaLlegada}" />
+
+                <label for="hora-llegada">Hora Llegada:</label>
+                <input type="time" id="hora-llegada" th:field="*{horaLlegada}" />
+
+                <label for="precio">Precio del viaje:</label>
+                <input type="number" id="precio" th:field="*{precioViaje}">
+
+                <label for="file">Imagen:</label>
+                <input type="file" id="file" name="file" />
+
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+</body>
+</html>
